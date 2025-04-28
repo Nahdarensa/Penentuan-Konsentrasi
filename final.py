@@ -1,3 +1,19 @@
+import os
+
+# Bagian tambahan: Membuat requirements.txt kalau belum ada
+if not os.path.exists('requirements.txt'):
+    requirements = [
+        "streamlit",
+        "numpy",
+        "pandas",
+        "matplotlib"
+    ]
+    with open('requirements.txt', 'w') as f:
+        for package in requirements:
+            f.write(package + '\n')
+    print("✅ File requirements.txt berhasil dibuat!")
+
+# --- Mulai coding asli kamu ---
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -17,7 +33,7 @@ def calculate_regression_equation(X, Y, var_name_x='x', var_name_y='y'):
     a = (sum_y - b * sum_x) / n
 
     # Menghitung koefisien korelasi
-    r = (n * sum_xy - sum_x * sum_y) / np.sqrt((n * sum_x_squared - sum_x**2) * (n * sum_y_squared - sum_y**2))
+    r = (n * sum_xy - sum_x * sum_y) / np.sqrt((n * sum_x_squared - sum_x*2) * (n * sum_y_squared - sum_y*2))
 
     equation = f'{var_name_y} = {a:.2f} + {b:.2f}{var_name_x}'
     regression_info = {'equation': equation, 'intercept': a, 'slope': b, 'r_value': r}
@@ -110,9 +126,9 @@ def main():
             st.markdown("## Hasil dari persamaan regresi yang dihitung adalah:")
             st.markdown(f"### 📌 {regression_info['equation']}")
 
-            st.write(f"*Slope (b)*: {regression_info['slope']:.2f}")
-            st.write(f"*Intercept (a)*: {regression_info['intercept']:.2f}")
-            st.write(f"*Koefisien Korelasi (r)*: {regression_info['r_value']:.4f}")
+            st.write(f"Slope (b): {regression_info['slope']:.2f}")
+            st.write(f"Intercept (a): {regression_info['intercept']:.2f}")
+            st.write(f"Koefisien Korelasi (r): {regression_info['r_value']:.4f}")
 
             # Menampilkan grafik regresi
             fig, ax = plt.subplots()
@@ -143,5 +159,5 @@ def main():
     else:
         st.warning("Masukkan data yang valid untuk X dan Y dalam tabel di atas.")
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     main()
