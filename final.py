@@ -43,7 +43,7 @@ def calculate_regression_equation(X, Y, var_name_x='x', var_name_y='y'):
 def main():
     st.title('✨ Penentuan Konsentrasi Dari Persamaan Regresi Deret Standar ✨')
     st.write('Penentuan konsentrasi dari persamaan regresi deret standar yang dapat memudahkan analisis tanpa perlu menghitung secara manual. ENJOY FOR ACCESS 🧪👩‍🔬')
-    st.markdown(" **SCROLL FOR MORE!!!")
+    st.markdown(" ***SCROLL FOR MORE!!!*** ")
 
     # CSS untuk gradasi warna pastel colorful dan animasi
     background_color_start = "#FFB6C1"  # Light Pink
@@ -90,7 +90,8 @@ def main():
     """, unsafe_allow_html=True)
 
     # Perkenalan Kelompok
-    st.header("👥 Kelompok 11 (E2-PMIP)")
+     st.header("INTRODUCTION OUR TEAM")
+    st.subheader("👥 Kelompok 11 (E2-PMIP)")
     st.write("""
     1. Kayla Nurrahma Siswoyo (2420606)  
     2. Nahda Rensa Subari (2420632)  
