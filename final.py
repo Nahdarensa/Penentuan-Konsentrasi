@@ -165,5 +165,4 @@ def main():
     else:
         st.warning("Masukkan data yang valid untuk X dan Y dalam tabel di atas.")
 
-if _name_ == '_main_':
-    main()
+if __name__ == '__main__':
