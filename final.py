@@ -9,10 +9,6 @@ if not os.path.exists('requirements.txt'):
         "matplotlib"
     ]
     with open('requirements.txt', 'w') as f:
-
-
-
-
         for package in requirements:
             f.write(package + '\n')
     print("✅ File requirements.txt berhasil dibuat!")
@@ -47,7 +43,7 @@ def calculate_regression_equation(X, Y, var_name_x='x', var_name_y='y'):
 def main():
     st.title('✨ Penentuan Konsentrasi Dari Persamaan Regresi Deret Standar ✨')
     st.write('Penentuan konsentrasi dari persamaan regresi deret standar yang dapat memudahkan analisis tanpa perlu menghitung secara manual. ENJOY FOR ACCESS 🧪👩‍🔬')
-    st.markdown(" ***SCROLL FOR MORE!!!*** ")
+    st.markdown(" **SCROLL FOR MORE!!!** ")
 
     # CSS untuk gradasi warna pastel colorful dan animasi
     background_color_start = "#FFB6C1"  # Light Pink
@@ -72,7 +68,7 @@ def main():
     """, unsafe_allow_html=True)
 
     # Gambar
-    img_url = "https://imgur.com/a/YW2sCww"  # Link direct gambar
+    img_url = "https://i.imgur.com/YW2sCww.jpg"  # Link direct gambar
     st.markdown(f"""
         <style>
         .floating-image {{
@@ -101,7 +97,7 @@ def main():
     2. Nahda Rensa Subari (2420632)  
     3. Rizka Rahmawati Shavendira (2420656)  
     4. Ummu Nabiilah (2420676)
-    5. Dinda Aryantika (2320520)
+    5. Dinda Aryantika (2320520)
     """)
 
     # Kalkulator Regresi
@@ -165,5 +161,5 @@ def main():
     else:
         st.warning("Masukkan data yang valid untuk X dan Y dalam tabel di atas.")
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     main()
