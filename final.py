@@ -9,6 +9,10 @@ if not os.path.exists('requirements.txt'):
         "matplotlib"
     ]
     with open('requirements.txt', 'w') as f:
+
+
+
+
         for package in requirements:
             f.write(package + '\n')
     print("✅ File requirements.txt berhasil dibuat!")
@@ -28,20 +32,12 @@ def calculate_regression_equation(X, Y, var_name_x='x', var_name_y='y'):
     sum_x_squared = np.sum(X**2)
     sum_y_squared = np.sum(Y**2)
 
-    # Menghindari pembagian dengan nol
-    denominator_b = n * sum_x_squared - sum_x**2
-    denominator_r_x = n * sum_x_squared - sum_x**2
-    denominator_r_y = n * sum_y_squared - sum_y**2
-
-    if denominator_b == 0 or denominator_r_x == 0 or denominator_r_y == 0:
-        raise ValueError("Data X atau Y memiliki variansi nol. Regresi tidak dapat dilakukan.")
-
     # Menghitung koefisien regresi
-    b = (n * sum_xy - sum_x * sum_y) / denominator_b
+    b = (n * sum_xy - sum_x * sum_y) / (n * sum_x_squared - sum_x**2)
     a = (sum_y - b * sum_x) / n
 
     # Menghitung koefisien korelasi
-    r = (n * sum_xy - sum_x * sum_y) / np.sqrt(denominator_r_x * denominator_r_y)
+    r = (n * sum_xy - sum_x * sum_y) / np.sqrt((n * sum_x_squared - sum_x*2) * (n * sum_y_squared - sum_y*2))
 
     equation = f'{var_name_y} = {a:.2f} + {b:.2f}{var_name_x}'
     regression_info = {'equation': equation, 'intercept': a, 'slope': b, 'r_value': r}
@@ -76,7 +72,7 @@ def main():
     """, unsafe_allow_html=True)
 
     # Gambar
-    img_url = "https://i.imgur.com/NuOnLxQ.jpeg"
+    img_url = "https://i.imgur.com/NuOnLxQ.jpeg"  # Link direct gambar
     st.markdown(f"""
         <style>
         .floating-image {{
@@ -154,6 +150,7 @@ def main():
             y_input = st.number_input(f'Masukkan nilai {var_name_y} yang ingin dihitung X-nya:', value=0.0)
 
             if y_input is not None:
+                # Menghitung nilai X berdasarkan Y menggunakan persamaan regresi
                 b = regression_info['slope']
                 a = regression_info['intercept']
                 if b != 0:
