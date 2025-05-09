@@ -101,6 +101,7 @@ def main():
     2. Nahda Rensa Subari (2420632)  
     3. Rizka Rahmawati Shavendira (2420656)  
     4. Ummu Nabiilah (2420676)
+    5. Dinda Aryantika (2320520)
     """)
 
     # Kalkulator Regresi
