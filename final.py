@@ -9,6 +9,10 @@ if not os.path.exists('requirements.txt'):
         "matplotlib"
     ]
     with open('requirements.txt', 'w') as f:
+
+
+
+
         for package in requirements:
             f.write(package + '\n')
     print("✅ File requirements.txt berhasil dibuat!")
@@ -68,7 +72,7 @@ def main():
     """, unsafe_allow_html=True)
 
     # Gambar
-    img_url = "https://i.imgur.com/YW2sCww.jpg"  # Link direct gambar
+    img_url = "https://imgur.com/a/YW2sCww"  # Link direct gambar
     st.markdown(f"""
         <style>
         .floating-image {{
@@ -161,5 +165,5 @@ def main():
     else:
         st.warning("Masukkan data yang valid untuk X dan Y dalam tabel di atas.")
 
-if_name_=='_main_':
-    main()
+if _name_ == '_main_':
+    main()
