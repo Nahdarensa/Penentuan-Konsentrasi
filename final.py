@@ -2,13 +2,14 @@ import os
 import streamlit as st
 import numpy as np
 import pandas as pd
-import matplotlib as plt
 from PIL import Image
+import plotly.graph_objects as go  # ganti matplotlib
 
 # Buat requirements.txt otomatis
+required_packages = ["streamlit", "numpy", "pandas", "plotly", "Pillow"]
 if not os.path.exists('requirements.txt'):
     with open('requirements.txt', 'w') as f:
-        f.write("streamlit\nnumpy\npandas\nmatplotlib\nPillow\n")
+        f.write("\n".join(required_packages) + "\n")
 
 # Fungsi regresi
 def calculate_regression_equation(X, Y, var_name_x='x', var_name_y='y'):
@@ -22,7 +23,7 @@ def calculate_regression_equation(X, Y, var_name_x='x', var_name_y='y'):
     b = (n * sum_xy - sum_x * sum_y) / (n * sum_x_squared - sum_x**2)
     a = (sum_y - b * sum_x) / n
 
-    r = (n * sum_xy - sum_x * sum_y) / np.sqrt((n * sum_x_squared - sum_x*2) * (n * sum_y_squared - sum_y*2))
+    r = (n * sum_xy - sum_x * sum_y) / np.sqrt((n * sum_x_squared - sum_x**2) * (n * sum_y_squared - sum_y**2))
 
     equation = f'{var_name_y} = {a:.2f} + {b:.2f}{var_name_x}'
     return {'equation': equation, 'intercept': a, 'slope': b, 'r_value': r}
@@ -99,15 +100,14 @@ def main():
             st.write(f"Intercept (a): {reg['intercept']:.2f}")
             st.write(f"Koefisien Korelasi (r): {reg['r_value']:.4f}")
 
-            # Grafik
-            fig, ax = plt.subplots()
-            ax.scatter(X, Y, color='blue', label='Data')
-            ax.plot(X, reg['intercept'] + reg['slope'] * X, color='red', label='Regresi')
-            ax.set_xlabel(var_name_x)
-            ax.set_ylabel(var_name_y)
-            ax.set_title('Grafik Regresi Linear')
-            ax.legend()
-            st.pyplot(fig)
+            # Gunakan Plotly untuk visualisasi
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=X, y=Y, mode='markers', name='Data'))
+            fig.add_trace(go.Scatter(x=X, y=reg['intercept'] + reg['slope'] * X, mode='lines', name='Regresi', line=dict(color='red')))
+            fig.update_layout(title='Grafik Regresi Linear',
+                              xaxis_title=var_name_x,
+                              yaxis_title=var_name_y)
+            st.plotly_chart(fig)
 
             # Kalkulasi berdasarkan Y
             st.header("📊 Hitung Nilai X Berdasarkan Y")
@@ -126,6 +126,5 @@ def main():
     else:
         st.warning("⚠ Harap masukkan data X dan Y yang valid.")
 
-# Pastikan ini ditulis dengan benar
 if __name__ == '__main__':
     main()
